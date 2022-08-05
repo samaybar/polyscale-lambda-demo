@@ -34,11 +34,11 @@ role-arn:
 create-role:
 	@aws iam create-role \
 		--role-name $(role_name) \
-		--assume-role-policy-document file://../role-policy-document.json
+		--assume-role-policy-document file://../LambdaResources/role-policy-document.json
 	@aws iam put-role-policy \
 		--role-name $(role_name) \
 		--policy-name Logging \
-		--policy-document file://../role-inline-policy.json
+		--policy-document file://../LambdaResources/role-inline-policy.json
 
 function.zip: index.js config.json config2.json package.json node_modules
 	@zip -r $@ $^
