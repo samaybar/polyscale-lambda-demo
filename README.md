@@ -8,9 +8,9 @@ In each directory, there are two config files which need your database informati
 config.json should contain your direct database credentials
 config2.json should update the host and username
 
-Once updating the config files, if you have the AWS command line tool set up, from the root directory you can deploy both functions with:
-`make bucket` -- creates a S3 bucket to store the Lambda zip files
-`make deploy` -- creates/updates Lambda functions and creates API Gateway in front of it
+Once updating the config files, if you have the AWS command line tool set up, from the root directory you can deploy both functions with:  
+`make bucket` -- creates a S3 bucket to store the Lambda zip files. 
+`make deploy` -- creates/updates Lambda functions and creates API Gateway in front of it. 
 The output of the ` deploy` will include the URL of the endpoints for each function. 
 
 Alternately, you can just run the function from the Lambda test console with  
