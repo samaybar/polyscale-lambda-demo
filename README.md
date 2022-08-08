@@ -4,12 +4,12 @@
 This respository contains two lambda functions that each allow you to compare accessing a MySQL database directly or via PolyScale.
 
 In order to deploy these functions, you need to define the following parameters:  
-`DBHOST` : Hostname for your database
-`DBNAME` : name of your database
-`DBUSER` : username to access your database
-`DBPASSWORD` : password for the database user
-`PSHOST` : this is already filled with psedge.global
-`PSUSER` : POLYSCALE_CACHE_ID-DBUSER
+`DBHOST` : Hostname for your database  
+`DBNAME` : name of your database  
+`DBUSER` : username to access your database  
+`DBPASSWORD` : password for the database user  
+`PSHOST` : this is already filled with psedge.global  
+`PSUSER` : POLYSCALE_CACHE_ID-DBUSER  
 
 These should be updated in the template.yaml file on lines 11 through 26.
 
