@@ -1,8 +1,18 @@
 'use strict';
 
 const MYSQL = require('mysql2');
-var directConfig = require('./config.json');
-var polyscaleConfig = require('./config2.json');
+let directConfig = {
+    "dbhost" : process.env.DBHOST,
+    "dbname" : process.env.DBNAME,
+    "dbuser" : process.env.DBUSER,
+    "dbpassword" : process.env.DBPASSWORD
+};
+let polyscaleConfig = {
+    "dbhost" : process.env.PSHOST,
+    "dbname" : process.env.DBNAME,
+    "dbuser" : process.env.PSUSER,
+    "dbpassword" : process.env.DBPASSWORD
+};
 //track whether we have a new container
 let containerCounter = 0;
 let isNewContainer = true;
@@ -46,8 +56,8 @@ async function getMyData(databaseSource, myQuery){
     //if polyscale is the method
     if(databaseSource === "polyscale"){
             mysql = mysqlPolyscale;
-            connectTime = connectTimeP;
             config = polyscaleConfig;
+            connectTime = connectTimeP;
     }
     console.log("in the database function");
     

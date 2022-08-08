@@ -6,9 +6,16 @@ var polyscaleConfig = require('./config2.json');
 
 
 async function getMyData(databaseSource, myQuery){
-    let config = directConfig;
+    let config = {
+        "dbhost" : process.env.DBHOST,
+        "dbname" : process.env.DBNAME,
+        "dbuser" : process.env.DBUSER,
+        "dbpassword" : process.env.DBPASSWORD
+    }
+    
     if(databaseSource === "polyscale"){
-            config = polyscaleConfig;
+            config.dbhost = process.env.PSHOST;
+            config.dbuser = process.env.PSUSER;
     }
     console.log("in the database function");
     

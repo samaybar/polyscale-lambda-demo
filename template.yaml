@@ -4,7 +4,28 @@ Description: >
     polyscale-demo
 
     SAM Template for polyscale-demo
-    
+
+Parameters:
+  DBHOST:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default: "YOUR_DB_HOST" #put your DB host here
+  DBNAME:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default: "YOUR_DB_NAME" #put your DB name here
+  DBUSER:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default: "YOUR_DB_USERNAME" #put your DB username here
+  DBPASSWORD:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default:  "YOUR_DB_PASSWORD" #password for your DB user
+  PSHOST:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default: "psedge.global" #this is the host for PolyScale
+  PSUSER:
+    Type: Aws::SSM::Parameter::Value<String>
+    Default: "POLYSCALE-CACHE_ID-YOUR_DB_USERNAME" #prepend the PolyScale cache id to - and the DBUsername
+
+
 Globals:
     Function:
         Timeout: 5
@@ -17,6 +38,20 @@ Resources:
             CodeUri: database/
             Handler: index.handler
             Runtime: nodejs16.x
+            Environment:
+              Variables:
+                DBHOST:
+                  Ref: DBHOST
+                DBNAME:
+                  Ref: DBNAME
+                DBUSER:
+                  Ref: DBUSER
+                DBPASSWORD:
+                  Ref: DBPASSWORD
+                PSHOST:
+                  Ref: PSHOST
+                PSUSER:
+                  Ref: PSUSER
             Events:
                 PolyScaleDemoAPI:
                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -30,6 +65,20 @@ Resources:
             CodeUri: database-serverless/
             Handler: index.handler
             Runtime: nodejs16.x
+            Environment:
+              Variables:
+                DBHOST:
+                  Ref: DBHOST
+                DBNAME:
+                  Ref: DBNAME
+                DBUSER:
+                  Ref: DBUSER
+                DBPASSWORD:
+                  Ref: DBPASSWORD
+                PSHOST:
+                  Ref: PSHOST
+                PSUSER:
+                  Ref: PSUSER
             Events:
                 PolyScaleDemoAPI:
                     Type: Api 

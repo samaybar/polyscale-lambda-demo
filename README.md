@@ -3,15 +3,22 @@
 ## Overview
 This respository contains two lambda functions that each allow you to compare accessing a MySQL database directly or via PolyScale.
 
-In each directory, there are two config files which need your database information if you want to run this on your own.
+In order to deploy these functions, you need to define the following parameters:  
+`DBHOST` : Hostname for your database
+`DBNAME` : name of your database
+`DBUSER` : username to access your database
+`DBPASSWORD` : password for the database user
+`PSHOST` : this is already filled with psedge.global
+`PSUSER` : POLYSCALE_CACHE_ID-DBUSER
 
-config.json should contain your direct database credentials
-config2.json should update the host and username
+These should be updated in the template.yaml file on lines 11 through 26.
 
-Once updating the config files, if you have the AWS command line tool set up, from the root directory you can deploy both functions with:  
+You also need to create a unique bucket name in `Makefile` on line 2, and choose a different AWS Region on line 3 if desired.
+
+Once these configurations are made, from the root directory you can deploy both functions with:  
 `make bucket` -- creates a S3 bucket to store the Lambda zip files.  
 `make deploy` -- creates/updates Lambda functions and creates API Gateway in front of it.  
-The output of the ` deploy` will include the URL of the endpoints for each function. 
+The output of the `deploy` will include the URL of the endpoints for each function. 
 
 Alternately, you can just run the function from the Lambda test console with  
 ```

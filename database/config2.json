@@ -1,7 +1,0 @@
-{
-    "dbhost" : "psedge.global",
-    "dbname" : "YOUR_DB_NAME",
-    "dbuser" : "POLYSCALE-CACHE_ID-YOUR_DB_USERNAME",
-    "dbpassword" : "YOUR_DB_PASSWORD"
-}
-
