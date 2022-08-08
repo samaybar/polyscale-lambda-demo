@@ -1,3 +1,5 @@
+'use strict';
+
 var mysql = require('mysql2/promise');
 var directConfig = require('./config.json');
 var polyscaleConfig = require('./config2.json');

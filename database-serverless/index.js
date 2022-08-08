@@ -1,3 +1,4 @@
+'use strict';
 
 const MYSQL = require('mysql2');
 var directConfig = require('./config.json');

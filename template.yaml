@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    polyscale-demo
+
+    Sample SAM Template for polyscale-demo
+    
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+    Function:
+        Timeout: 5
+
+Resources:
+
+    PolyScaleDemoFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: database/
+            Handler: index.handler
+            Runtime: nodejs16.x
+            Events:
+                HelloWorldAPI:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /
+                        Method: get
+
+
+Outputs:
+
+    HelloWorldApi:
+      Description: "API Gateway endpoint URL for Prod stage for PolyScale function"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+
+    HelloWorldFunction:
+      Description: "PolyScale Demo Function ARN"
+      Value: !GetAtt PolyScaleDemoFunction.Arn
+
+    HelloWorldFunctionIamRole:
+      Description: "Implicit IAM Role created for PolyScale Demo function"
+      Value: !GetAtt PolyScaleDemoFunction.Arn
