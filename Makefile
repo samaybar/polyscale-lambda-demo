@@ -11,10 +11,6 @@ deploy: node_modules
 	sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket $(BUCKET_NAME)
 	sam deploy --template-file packaged.yaml --stack-name $(STACK_NAME) --capabilities CAPABILITY_IAM --region $(REGION)
 
-deploy2: node_modules
-	sam package --template-file template_sam.yaml --output-template-file packaged_sam.yaml --s3-bucket $(BUCKET_NAME)
-	sam deploy --template-file packaged_sam.yaml --stack-name $(STACK_NAME) --capabilities CAPABILITY_IAM --region $(REGION)
-
 node_modules:
 	npm install --prefix database
 	npm install --prefix database-serverless
