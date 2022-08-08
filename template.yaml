@@ -42,11 +42,7 @@ Outputs:
 
     PolyScaleDemoApi:
       Description: "API Gateway endpoint URL for Prod stage for PolyScale function"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-
-    PolyScaleServerlessDemoApi:
-      Description: "API Gateway endpoint URL for Prod stage for PolyScale function w serverless library"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/serverless/"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ \n https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/serverless/"
 
     PolyScaleDemoFunction:
       Description: "PolyScale Demo Function ARN"
@@ -54,12 +50,4 @@ Outputs:
 
     PolyScaleServerlessDemoFunction:
       Description: "PolyScale Serverless Demo Function ARN"
-      Value: !GetAtt PolyScaleServerlessDemoFunction.Arn
-
-    PolyScaleDemoFunctionIamRole:
-      Description: "Implicit IAM Role created for PolyScale Demo function"
-      Value: !GetAtt PolyScaleDemoFunction.Arn
-
-     PolyScaleServerlessDemoFunctionIamRole:
-      Description: "Implicit IAM Role created for PolyScale Demo function"
       Value: !GetAtt PolyScaleServerlessDemoFunction.Arn
