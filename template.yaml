@@ -3,9 +3,8 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
     polyscale-demo
 
-    Sample SAM Template for polyscale-demo
+    SAM Template for polyscale-demo
     
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
     Function:
         Timeout: 5
@@ -13,16 +12,29 @@ Globals:
 Resources:
 
     PolyScaleDemoFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Type: AWS::Serverless::Function
         Properties:
             CodeUri: database/
             Handler: index.handler
             Runtime: nodejs16.x
             Events:
-                HelloWorldAPI:
+                PolyScaleDemoAPI:
                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
                     Properties:
                         Path: /
+                        Method: get
+
+    PolyScaleServerlessDemoFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: database-serverless/
+            Handler: index.handler
+            Runtime: nodejs16.x
+            Events:
+                PolyScaleDemoAPI:
+                    Type: Api 
+                    Properties:
+                        Path: /serverless/
                         Method: get
 
 
@@ -32,10 +44,22 @@ Outputs:
       Description: "API Gateway endpoint URL for Prod stage for PolyScale function"
       Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
 
+    PolyScaleServerlessDemoApi:
+      Description: "API Gateway endpoint URL for Prod stage for PolyScale function w serverless library"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/serverless/"
+
     PolyScaleDemoFunction:
       Description: "PolyScale Demo Function ARN"
       Value: !GetAtt PolyScaleDemoFunction.Arn
 
+    PolyScaleServerlessDemoFunction:
+      Description: "PolyScale Serverless Demo Function ARN"
+      Value: !GetAtt PolyScaleServerlessDemoFunction.Arn
+
     PolyScaleDemoFunctionIamRole:
       Description: "Implicit IAM Role created for PolyScale Demo function"
       Value: !GetAtt PolyScaleDemoFunction.Arn
+
+     PolyScaleServerlessDemoFunctionIamRole:
+      Description: "Implicit IAM Role created for PolyScale Demo function"
+      Value: !GetAtt PolyScaleServerlessDemoFunction.Arn

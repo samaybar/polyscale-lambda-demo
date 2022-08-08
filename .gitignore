@@ -109,3 +109,4 @@ function.zip
 create-function
 package-lock.json
 role-arn
+.DS_Store
