@@ -1,9 +1,6 @@
 'use strict';
 
 var mysql = require('mysql2/promise');
-var directConfig = require('./config.json');
-var polyscaleConfig = require('./config2.json');
-
 
 async function getMyData(databaseSource, myQuery){
     let config = {
